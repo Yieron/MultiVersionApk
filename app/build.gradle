@@ -13,13 +13,22 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
+        //3.0版本Gradle开始必须添加纬度
         flavorDimensions "default"
     }
 
     //多渠道打包配置
     productFlavors {
+        //开发版
+        developer {
+            //applicationIdSuffix，给包名添加后缀。例如测试版加上.internal后缀。测试版加包名后缀，方便和正式版共存
+            applicationIdSuffix ".internal"
+            manifestPlaceholders = [app_name: "开发版", channelValue : "app_internal"]
+        }
         //渠道包
         app_360 {
+            //applicationId完全替换包名
+            applicationId "com.example.multiversionapk_360"
             manifestPlaceholders = [app_name:"360渠道包",channelValue: "app_360"]
         }
         app_yingyongbao {
@@ -36,9 +45,14 @@ android {
     }
 
     buildTypes {
+        debug {
+            manifestPlaceholders = [amap_key:""]
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+
+            manifestPlaceholders = [amap_key:""]
         }
     }
 
