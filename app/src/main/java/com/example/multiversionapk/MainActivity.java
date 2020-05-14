@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 
+import com.example.multiversionapk.utils.ChannelUtil;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d(TAG, "onCreate: "+this.getChannel());
+        Log.d(TAG, "onCreate: ChannelUtil:"+ ChannelUtil.getChannel(this));
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
